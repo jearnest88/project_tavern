@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlitp4dd3pwni"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_6o01q"]
+[ext_resource type="Texture2D" uid="uid://bqnnmxiaey1s6" path="res://assets/player/Basic Charakter Spritesheet.png" id="1_wbk0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fmfg"]
+atlas = ExtResource("1_wbk0q")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yjl0"]
+atlas = ExtResource("1_wbk0q")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t40fr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fmfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yjl0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6mjd"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_h678i"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xotdw"]
+_data = {
+"idle": SubResource("Animation_h678i")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1456"]
+size = Vector2(464.75, 270.25)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6o01q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_t40fr")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.285875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_q6mjd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xotdw")
+}
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+position = Vector2(2, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-3, -9)
+shape = SubResource("RectangleShape2D_b1456")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_shape_entered" from="PlayerDetection" to="." method="_on_player_detection_area_shape_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
