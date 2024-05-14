@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr8h3ntomheth"]
+[gd_scene load_steps=7 format=3 uid="uid://cr8h3ntomheth"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4epcc"]
 [ext_resource type="Texture2D" uid="uid://6gtgaydb88xl" path="res://assets/interior/Wooden House.png" id="2_vv14g"]
 [ext_resource type="PackedScene" uid="uid://dlitp4dd3pwni" path="res://scenes/player.tscn" id="3_kf8cw"]
-[ext_resource type="PackedScene" uid="uid://diktl4mny0ti1" path="res://scenes/wheat.tscn" id="4_3d8i5"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a3v47"]
 
@@ -61,16 +60,12 @@ layer_0/tile_data = PackedInt32Array(1048599, 65536, 2, 1048600, 65536, 2, 10486
 
 [node name="Player" parent="." instance=ExtResource("3_kf8cw")]
 position = Vector2(530, 224)
-target_path = NodePath("../Objects/Wheat")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(562, 229)
 zoom = Vector2(2, 2)
 
 [node name="Objects" type="Node" parent="."]
-
-[node name="Wheat" parent="Objects" instance=ExtResource("4_3d8i5")]
-position = Vector2(619, 175)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
