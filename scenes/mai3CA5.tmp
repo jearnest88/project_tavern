@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr8h3ntomheth"]
+[gd_scene load_steps=7 format=3 uid="uid://cr8h3ntomheth"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4epcc"]
 [ext_resource type="Texture2D" uid="uid://6gtgaydb88xl" path="res://assets/interior/Wooden House.png" id="2_vv14g"]
 [ext_resource type="PackedScene" uid="uid://dlitp4dd3pwni" path="res://scenes/player.tscn" id="3_kf8cw"]
-[ext_resource type="PackedScene" uid="uid://dqx2expl42dp4" path="res://scenes/collectablespawner.tscn" id="4_x3qyf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a3v47"]
 
@@ -71,7 +70,5 @@ zoom = Vector2(2, 2)
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
-
-[node name="collectablespawner" parent="." instance=ExtResource("4_x3qyf")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

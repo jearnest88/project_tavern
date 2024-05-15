@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsmvwtgww8np4"]
+
+[ext_resource type="Script" path="res://scenes/collectables/apple.gd" id="1_tinj8"]
+[ext_resource type="Texture2D" uid="uid://hsthw2uhbsrl" path="res://assets/plant/Basic_Plants.png" id="2_2k5v6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2os5"]
+atlas = ExtResource("2_2k5v6")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_voh20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2os5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0lis"]
+radius = 5.09902
+
+[node name="apple" type="Area2D"]
+script = ExtResource("1_tinj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -8)
+sprite_frames = SubResource("SpriteFrames_voh20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_g0lis")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

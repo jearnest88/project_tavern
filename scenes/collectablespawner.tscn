@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqx2expl42dp4"]
+
+[ext_resource type="Script" path="res://scenes/collectablespawner.gd" id="1_dmras"]
+
+[node name="collectablespawner" type="Node2D"]
+script = ExtResource("1_dmras")
